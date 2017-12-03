@@ -1,0 +1,59 @@
+/* timeline page */
+.container .brand {
+    color: white;
+    font-size: 22px;
+}
+.timeline {
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.leftalign {
+    text-align: left;
+}
+.bold {
+    font-weight: bold;
+}
+.content {
+    font-weight: bold;
+    padding-left: 10px;
+    margin-top: 3px;
+}
+.date {
+    color: grey;
+    font-size: 12px;
+    margin-right: 15px;
+}
+.roundinside {
+    padding: 10px;
+    background-color: white;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    margin-bottom: 3px;
+}
+.bottom15 {
+    margin-bottom: 15px;
+}
+.submenu {
+    color: #5b7dc1;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.submenu ul {
+    margin-top: 7px;
+}
+.submenu li a {
+    font-size: 13px;
+}
+.submenu li a strong {
+    display: block;
+    line-height: 0px;
+    margin-top: 15px;
+}
+.search {
+    width: 70%;
+    margin-top: 8px;
+}
