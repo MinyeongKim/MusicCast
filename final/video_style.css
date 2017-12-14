@@ -1,0 +1,30 @@
+a {text-decoration: none; color:#333;}
+ul li {list-style:none; }
+
+/* 게시판 목록 */
+#board_area {margin-top:50px;}
+.list-table thead th{ height:40px; border-top:2px solid #09C; border-bottom:1px solid #CCC; font:bold 17px 'malgun gothic';  }
+.list-table tbody td{ text-align:center; padding:10px 0; border-bottom:1px solid #CCC; height:20px; font: 14px 'malgun gothic';}
+
+/* 게시판 글쓰기 */
+#board_write {margin-left:10px; width:450px;}
+.inh {height:20px; }
+.tb {font-weight: bold; background:#d5d5d5; }
+.bt_se {margin-top:20px; text-align:center;}
+
+/* 게시판 read */
+#board_read {width:700px; position:relative; top:30px; }
+.fl {float:left; }
+.tc {text-align:center; }
+.w5 {width:50px; }
+.w17 {width:170px; }
+.w7 {width:70px; }
+.w10 {width:10px; }
+.w100 {width:100px; }
+.read {width:10%; background:#bfbfbf; height:40px; font:bold 13px "Malgun Gothic"; line-height:40px; color:black; text-align:center;  }
+.read_c {background-color:#bfbfbf; }
+.read_con {width:90%; height:40px; float:left; font:normal 13px "Dotum"; line-height:40px; color:#333333; border-bottom:solid 1px black; }
+.read_nl {width:10%; background:#bfbfbf; height:130px; font:bold 13px "Malgun Gothic"; line-height:130px; color:black; text-align:center; }
+.read_nl_con {width:89%; height:129px; float:left; font:normal 13px "Dotum"; line-height:20px;  }
+.bo_ser {font:14px 'dotum'; color:#333;  position:absolute; top:380px; }
+.bo_ser > ul > li {float:left; margin-left:10px; }
