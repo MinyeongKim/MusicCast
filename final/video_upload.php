@@ -10,14 +10,12 @@ $mysql_username = 'root';
 $mysql_password = 'apmsetup';
 $mysql_database = 'musiccast';
 
-// DB 연결
+// DB connect
 $connect = mysql_connect($mysql_hostname, $mysql_username, $mysql_password);
 
-// DB 선택
-mysql_select_db($mysql_database, $connect) or die('DB 선택 실패');
+// DB select
+mysql_select_db($mysql_database, $connect) or die('Fail DB selection');
 
-
-// DB 연결완료
 $email = $_SESSION['login_email'];
 $nickname = $_SESSION['login_nick'];
 
