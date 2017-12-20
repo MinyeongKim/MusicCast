@@ -76,7 +76,7 @@
 				// connect DB
 				$connect = mysql_connect($mysql_hostname, $mysql_username, $mysql_password); 
 				// select DB
-				mysql_select_db($mysql_database, $connect) or die('Fail DB select');
+				mysql_select_db($mysql_database, $connect) or die('DB 선택 실패');
 				// check uploaded video file by user
 				$nick = $_SESSION['login_nick'];
 				$sql_find = "select v_num from h_video where nickname = '$nick' and v_check = 1";
