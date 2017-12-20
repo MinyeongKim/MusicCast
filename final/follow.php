@@ -1,46 +1,37 @@
 <?php
-session_start();
+	session_start();
 
-/*if(!isset($_SESSION["user"]) || !is_array($_SESSION["user"]) || empty($_SESSION["user"])) {
-      // redirect to login page
-}*/
+	$mysql_hostname = 'localhost';
+	$mysql_username = 'root';
+	$mysql_password = 'apmsetup';
+	$mysql_database = 'musiccast';
 
-$mysql_hostname = 'localhost';
-$mysql_username = 'root';
-$mysql_password = 'apmsetup';
-$mysql_database = 'musiccast';
+	// connect DB
+	$connect = mysql_connect($mysql_hostname, $mysql_username, $mysql_password);
 
-// DB ¿¬°á
-$connect = mysql_connect($mysql_hostname, $mysql_username, $mysql_password);
+	// select DB
+	mysql_select_db($mysql_database, $connect) or die('DB ì„ íƒ ì‹¤íŒ¨');
 
-// DB ¼±ÅÃ
-mysql_select_db($mysql_database, $connect) or die('DB ¼±ÅÃ ½ÇÆÐ');
+	$nickname = $_SESSION['login_nick'];
+	$sql_follow = "select count(*) from follow_list where nickname = '$nickname' and composer = 'DAMIN0912'";
+	$result = mysql_query($sql_follow, $connect);
+	$count = mysql_result($result, 0, 0);
 
+	// delete follow, if user is following. insert follow, if user is not following
+	if($count==1) {
+		$sql = "delete from follow_list where nickname = '$nickname' and composer = 'DAMIN0912'";
+	}
+	else {
+		$sql = "insert into follow_list (nickname, composer) values ('$nickname', 'DAMIN0912')";
+	}
 
-// DB ¿¬°á¿Ï·á
-$nickname = $_SESSION['login_nick'];
-$sql_follow = "select count(*) from follow_list where nickname = '$nickname' and composer = 'DAMIN0912'";
-$result = mysql_query($sql_follow, $connect);
-$count = mysql_result($result, 0, 0);
-
-// If result matched $myusername and $mypassword, table row must be 1 row
-if($count==1)  //count°¡ 1ÀÌ¶ó´Â °ÍÀº ¾ÆÀÌµð¿Í ÆÐ½º¿öµå°¡ ÀÏÄ¡ÇÏ´Â db°¡ ÇÏ³ª ÀÖÀ½À» ÀÇ¹ÌÇÕ´Ï´Ù. 
-{
-	$sql = "delete from follow_list where nickname = '$nickname' and composer = 'DAMIN0912'";
-}
-else
-{
-	$sql = "insert into follow_list (nickname, composer) values ('$nickname', 'DAMIN0912')";
-}
-
-
-
-if(mysql_query($sql, $connect)){
-	echo "<script>alert('Success!');</script>";
-	echo ("<script>location.replace('DAMIN_composer.php');</script>");
-}
-else{
-	echo "<script>alert('Fail!');</script>";
-	echo ("<script>location.replace('DAMIN_composer.php');</script>");
-}
+	// alert message and return DAMIN_composer.php
+	if(mysql_query($sql, $connect)) {
+		echo "<script>alert('Success!');</script>";
+		echo ("<script>location.replace('DAMIN_composer.php');</script>");
+	}
+	else {
+		echo "<script>alert('Fail!');</script>";
+		echo ("<script>location.replace('DAMIN_composer.php');</script>");
+	}
 ?>
