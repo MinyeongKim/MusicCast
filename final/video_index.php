@@ -5,7 +5,7 @@
 <html lang="ko">
 	<head>
 		<meta charset="UTF-8">
-		<title>게시판</title>
+		<title>NARINATO</title>
 		<link rel="stylesheet" href="style.css"/>
 	</head>
 	<body>
