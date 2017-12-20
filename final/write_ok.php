@@ -12,7 +12,7 @@
 	// DB select
 	mysql_select_db($mysql_database, $connect) or die('Fail DB selection');
 	
-	//Get video information that the composer entered
+	// Get video information that the composer entered
 	$title =$_POST['title'];
 	$content =$_POST['content'];
 	$category=$_POST['category'];
@@ -20,12 +20,13 @@
 	$date = date('Y-m-d');
 	$email = $_SESSION['login_email'];
 	
-	//
+	// Check uploaded video file by user
 	$sql_find = "select v_num from h_video where nickname = '$nick' and v_check = 1";
 	$video_number = mysql_query($sql_find, $connect);
 	$row = mysql_fetch_array($video_number);
 	$video_num = $row["v_num"];
 	
+	// Update video information to DB
 	$sql = "update h_video set title = '$title', category = '$category', upload_date = '$date', context = '$content', v_check = 0 where v_num = '$video_num'";
 	
 	if (mysql_query($sql, $connect)) {
