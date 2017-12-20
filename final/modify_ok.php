@@ -6,10 +6,10 @@
 	$mysql_password = 'apmsetup';
 	$mysql_database = 'musiccast';
 
-	// DB 연결
+	// connect DB
 	$connect = mysql_connect($mysql_hostname, $mysql_username, $mysql_password);
 
-	// DB 선택
+	// select DB
 	mysql_select_db($mysql_database, $connect) or die('Fail DB selection');
 	$bno = $_GET["indx"];
 	$title =$_POST['title'];
@@ -19,6 +19,7 @@
 	$date = date('Y-m-d');
 	$email = $_SESSION['login_email'];
 
+	// modify video data
 	$sql = "update h_video set title = '$title', category = '$category', upload_date = '$date', context = '$content', v_check = 0 where v_num = '$bno'";
 	
 	if (mysql_query($sql, $connect)) {
@@ -29,5 +30,7 @@
 		echo "<script>alert('Fail writing');</script> "; 
 		echo ("<script>location.replace('DAMIN_composer.php');</script>");
 	}
+
+	// close DB
 	mysql_close($connect);
 ?>
