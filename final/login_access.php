@@ -4,51 +4,45 @@
    $mysql_password = 'apmsetup';
    $mysql_database = 'musiccast';
    session_start();
-   // DB ø¨∞·
+   // connect DB
    $connect = mysql_connect($mysql_hostname, $mysql_username, $mysql_password); 
 
-   // DB º±≈√
-   mysql_select_db($mysql_database, $connect) or die('DB º±≈√ Ω«∆–');
-    $myusername=$_POST['user_email']; 
-    $mypassword=$_POST['user_pw']; 
+   // select DB
+   mysql_select_db($mysql_database, $connect) or die('DB ÏÑ†ÌÉù Ïã§Ìå®');
 
+   $myusername=$_POST['user_email']; 
+   $mypassword=$_POST['user_pw']; 
 
-   //sql : ¿‘∑¬«— email∞˙ password∞° µø¿œ«—¡ˆ »Æ¿Œ«œ¥¬ queryπÆ
-   //result : queryπÆ¿ª dbø°º≠ Ω««‡
-   //count : queryπÆ¿ª Ω««‡«— ∞·∞˙ ¡Ÿ¿« ºˆ
+   // check if user is or not.
    $sql = "select count(*) from user_info where email = '$myusername' and password = '$mypassword'";
    $result = mysql_query($sql, $connect);
    $count = mysql_result($result, 0, 0);
-    // If result matched $myusername and $mypassword, table row must be 1 row
-    if($count==1)  //count∞° 1¿Ã∂Û¥¬ ∞Õ¿∫ æ∆¿ÃµøÕ ∆–Ω∫øˆµÂ∞° ¿œƒ°«œ¥¬ db∞° «œ≥™ ¿÷¿Ω¿ª ¿«πÃ«’¥œ¥Ÿ. 
-    {
-        //session_register("myusername");
-        $_SESSION['login_email']=$myusername;
-      $_SESSION['login_pw'] = $mypassword;
 
+  // if there is information about this user in DB
+   if($count==1) {
+      $_SESSION['login_email']=$myusername;
+      $_SESSION['login_pw'] = $mypassword;
+      
+      // bring user's nickname
       $sql2 = "select nickname from user_info where email = '$myusername'";
       $result = mysql_query($sql2, $connect);
       $data = mysql_fetch_array($result);
       $_SESSION['login_nick'] = $data["nickname"];
 
+      // bring user is composer or not
       $nick = $_SESSION["login_nick"];
       $sql3 = "select is_composer from user_info where nickname = '$nick'";
       $result = mysql_query($sql3, $connect);
       $data = mysql_fetch_array($result);
       $_SESSION['login_composer'] = $data["is_composer"];
 
-      echo "". $_SESSION['login_email'] ."";
-      echo "". $_SESSION['login_nick'] ."";
-      //sessionø‹ø°µµ plag∑Œ ∑Œ±◊¿Œ ø©∫Œ∏¶ »Æ¿Œ«ÿæﬂµ«¥¬¡ˆ »Æ¿Œ«œ±‚
-      //$login_sql = "UPDATE user_info SET plag = 1 WHERE email = '$myusername'";
-      mysql_query($login_sql, $connect);
-      //login¿ª º∫∞¯«ﬂ¿ª Ω√ø°, home.php∑Œ ¿Ãµø
       echo("<script>location.replace('home.php');</script>");
-    }
-    else 
-    {
+   }
+
+   else {
       echo "<script>alert('Login failed');</script> "; 
       echo ("<script>location.replace('login.php');</script>");
     }
+   //close DB
    mysql_close($connect);
 ?>
