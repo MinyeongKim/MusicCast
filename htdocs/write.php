@@ -56,36 +56,31 @@
 </ul>
 </div>
 
-<!-- DB연동해서 검색하는거 구현 해야됨 -->
 <div id = "search">
-<form name = "search" method = "get" action ="a.jsp" onsubmit="return check()">
- <table width="500" border="0" align="right">
-  <tr>
-   <td align ="center" valign="bottom">
-    <select name="keyField">
-     <option value="subject">All</option>
-     <option value="writer">Composer</option>
-     <option value="content">Title</option>
-     </select>
-     </td>
-     
-   <td>
-    <input type="text" size="50" name="keyWord"> 
-   </td>
-   
-   <td>
-    <input type="submit" value="Search">
-   </td>  
-
-  </tr>
- </table>
-</form>
-</div>
+				<form method = "get" action ="search.php">
+					<table border="0" align="right">
+						<tr>
+							<td align ="center">
+								<select name="ser">
+								<option value="composer">Composer</option>
+								<option value="title">Title</option>
+								</select>
+							</td>
+							<td>
+								<input type="text" size="30" name="keyWord"> 
+							</td>
+							<td>
+								<input type="submit" value="Search">
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
 
 </div>
 <br>
 	<div id = "body">
-	<!-- 로그인을 안했을 시, login.php로 이동시켜준다. -->
+	<!-- If you are not log in, go to 'login.php' -->
 	<?php 
 		if(!($_SESSION['login_email'])) {
 			echo ("<script>location.replace('login.php');</script>");
@@ -98,10 +93,10 @@
 			$mysql_password = 'apmsetup';
 			$mysql_database = 'musiccast';
 
-			// DB 연결
+			// DB connect
 			$connect = mysql_connect($mysql_hostname, $mysql_username, $mysql_password); 
 
-			// DB 선택
+			// DB select
 			mysql_select_db($mysql_database, $connect) or die('Fail DB seletion');
 			$composer = $_SESSION['login_composer'];
 			if (strcmp($composer, "YES") == 0)
@@ -128,7 +123,7 @@
 		// DB 연결
 		$connect = mysql_connect($mysql_hostname, $mysql_username, $mysql_password);
 		// DB 선택
-		mysql_select_db($mysql_database, $connect) or die('DB 선택 실패');
+		mysql_select_db($mysql_database, $connect) or die('Fail DB select');
 		$nick = $_SESSION['login_nick'];
 		$sql = "select is_composer from user_info where nickname = '".$nick."'";
 				$result = mysql_query($sql, $connect);
@@ -141,6 +136,7 @@
 				mysql_close($connect);
 			 ?>
 			<div>
+				//
 				<form action="write_ok.php" method="post">
 						<table>
 								<td><label>Title</label></td>
