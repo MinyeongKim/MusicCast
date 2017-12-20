@@ -12,10 +12,10 @@
 			}
 			
 			#main_sub_div1
-			{
-            width : 200px;
-            height : 70px;
-            margin: 10px 10px 10px 40px;
+						{
+				    width : 200px;
+				    height : 70px;
+				    margin: 10px 10px 10px 40px;
 			}
 			$bg: #332f35;
 			$fg: lighten($bg,20%);
@@ -23,34 +23,34 @@
 
 
 			input[type=radio] {
-			  position: absolute;
-			  visibility: hidden;
-			  display: none;
+				  position: absolute;
+				  visibility: hidden;
+				  display: none;
 			}
 
 			label {
-			  color: lighten($bg,40%);
-			  display: inline-block;
-			  cursor: pointer;
-			  font-weight: bold;
-			  padding: 5px 20px;
+				  color: lighten($bg,40%);
+				  display: inline-block;
+				  cursor: pointer;
+				  font-weight: bold;
+				  padding: 5px 20px;
 			}
 
 			input[type=radio]:checked + label{
-			  color: lighten($bg,60%);
-			  background: $fg;
+				  color: lighten($bg,60%);
+				  background: $fg;
 			}
 
 			label + input[type=radio] + label {
-			  border-left: solid $borderWidth $fg;
+				  border-left: solid $borderWidth $fg;
 			}
 			.radio-group {
-			  border: solid;
-			  display: inline-block;
-			  margin: 20px;
-			  border-radius: 10px;
-			  overflow: hidden;
-			  float : left;
+				  border: solid;
+				  display: inline-block;
+				  margin: 20px;
+				  border-radius: 10px;
+				  overflow: hidden;
+				  float : left;
 			}
 			table, th, td
 			{
@@ -135,10 +135,10 @@
 			$mysql_password = 'apmsetup';
 			$mysql_database = 'musiccast';
 
-			// DB 연결
+			// DB connect
 			$connect = mysql_connect($mysql_hostname, $mysql_username, $mysql_password); 
 
-			// DB 선택
+			// DB select
 			mysql_select_db($mysql_database, $connect) or die('Fail DB selection');
 			$composer = $_SESSION['login_composer'];
 				$nick = $_SESSION['login_nick'];
@@ -175,6 +175,8 @@
 		<input type="radio" value="sad" name="selector"><label for="Sad">Sad</label>
 		<input type="radio" value="thrill" name="selector"><label for="Thrill">Thrill</label>
 		</div>
+			
+		//When press button, implement 'video_access.php'
 		<br><br><br><center><input type="submit" value="search">
 		</form>
 	</div>
