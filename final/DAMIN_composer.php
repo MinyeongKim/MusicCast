@@ -2,7 +2,7 @@
 <?php session_start(); ?>
 <html>
 	<head> 
-		<title>NARINTO</title>
+		<title>NARINATO</title>
 		<style type="text/css">
 			@import url(main.css);
 			body 
