@@ -6,18 +6,20 @@
 	$mysql_password = 'apmsetup';
 	$mysql_database = 'musiccast';
 
-	// DB 연결
+	// DB connect
 	$connect = mysql_connect($mysql_hostname, $mysql_username, $mysql_password);
 
-	// DB 선택
+	// DB select
 	mysql_select_db($mysql_database, $connect) or die('Fail DB selection');
-
+	
+	// Get information that the composer entered
 	$title =$_POST['title'];
 	$content =$_POST['content'];
 	$category=$_POST['category'];
 	$nick = $_SESSION['login_nick'];
 	$date = date('Y-m-d');
-
+	
+	//video upload to DB
 	$sql = "insert into h_video (v_num, title, category, upload_date, nickname, context, hit) values(0, '$title', '$category', '$date', '$nick', '$content', '0')";
 	
 	if (mysql_query($sql, $connect)) {
